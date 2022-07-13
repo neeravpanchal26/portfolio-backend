@@ -11,7 +11,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import json
 import os
+from pathlib import Path
+home = str(Path.home())
+with open(home+'/mycms.config.json') as config_file:
+    config = json.load(config_file)
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -26,6 +31,10 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 INSTALLED_APPS = [
     'home',
     'search',
+    'abilities',
+    'personalinfo',
+    'skills',
+    'events',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -48,6 +57,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'rest_framework',
+    'wagtail.api.v2',
 ]
 
 MIDDLEWARE = [
@@ -90,9 +102,13 @@ WSGI_APPLICATION = 'mycms.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config.get('DATABASE_NAME'),
+        'USER': config.get('DATABASE_USER'),
+        'PASSWORD': config.get('DATABASE_PASSWORD'),
+        'HOST': config.get('DATABASE_HOST'),
+        'PORT': config.get('DATABASE_PORT'),
+    },
 }
 
 
