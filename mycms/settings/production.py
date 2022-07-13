@@ -2,7 +2,7 @@ from .base import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://neeravpanchal26.pythonanywhere.com/']
+ALLOWED_HOSTS = ['neeravpanchal26.pythonanywhere.com']
 
 ROOT_CONF = "mycms.urls"
 
