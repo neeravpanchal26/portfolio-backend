@@ -17,7 +17,7 @@ class Events(Page):
 
         eventNameTwo = models.CharField(max_length=250, blank=False, null=True)
         eventFrom = models.DateField(blank=False, null=True)
-        eventTo = models.DateField(null=True)
+        eventTo = models.DateField(blank=True, null=True)
         eventType = models.TextField(choices=EventType.choices, default=EventType.FULLTIME)
         eventDescription = RichTextField(blank=True,null=True)
         eventIcon = models.CharField(max_length=50, blank=False, null=True)
