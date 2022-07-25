@@ -17,6 +17,8 @@ class personalinfo(Page):
     gitProfileLink = models.CharField(max_length=500, blank=True, null=True)
     gitApiLink = models.CharField(max_length=500, blank=True, null=True)
     linkedInLink = models.CharField(max_length=500, blank=True, null=True)
+    telephone = models.CharField(max_length=50, blank=False, null=True)
+    location = models.CharField(max_length=50, blank=False, null=True)
 
     content_panels = Page.content_panels + [
         FieldPanel('firstName'),
@@ -27,6 +29,8 @@ class personalinfo(Page):
         FieldPanel('gitProfileLink'),
         FieldPanel('gitApiLink'),
         FieldPanel('linkedInLink'),
+        FieldPanel('telephone'),
+        FieldPanel('location'),
     ]
 
     api_fields = [
@@ -38,6 +42,8 @@ class personalinfo(Page):
         APIField('gitProfileLink'),
         APIField('gitApiLink'),
         APIField('linkedInLink'),
+        APIField('telephone'),
+        APIField('location'),
     ]
 
     max_count = 1
